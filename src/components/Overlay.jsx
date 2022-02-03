@@ -13,7 +13,7 @@ const Overlay = () => {
     setCookie("gameOver", 0, { path: "/" });
     localStorage.removeItem("grid");
     localStorage.removeItem("curWord");
-    // localStorage.removeItem("answer");
+    localStorage.removeItem("answer");
     window.location.reload();
   };
 

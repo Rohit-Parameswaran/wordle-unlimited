@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Grid from "./Grid";
 import Keyboard from "./Keyboard";
 import addTileClasses from "../utils/addTileClasses";
+import getWord from "../utils/getWord";
 import { validGuesses } from "../data/validGuesses";
 import { solutions } from "../data/solutions";
 
