@@ -27,7 +27,7 @@ const Delete = ({ backspace }) => {
 const KeyboardKey = ({ keyValue, addLetter }) => {
   return (
     <div
-      className="h-8 w-8 bg-[#222] hover:scale-105 rounded-sm text-white m-[0.1rem] lg:m-1 flex items-center justify-center md:h-[3.25rem] md:w-[3.25rem] cursor-pointer border-[1px] border-[#222222ee] hover:border-neutral-700"
+      className="h-8 w-8 bg-[#222] hover:scale-105 rounded-sm text-white m-[0.15rem] lg:m-1 flex items-center justify-center md:h-[3.25rem] md:w-[3.25rem] cursor-pointer border-[1px] border-[#222222ee] hover:border-neutral-700"
       id={keyValue}
       onClick={() => {
         addLetter(keyValue);

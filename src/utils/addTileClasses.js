@@ -13,9 +13,10 @@ const addTileClasses = async (word, userWord, curWord) => {
     } else if (!word.includes(userWord[i])) {
       reqTile.classList.remove("border-4");
       reqTile.classList.add("bg-[#222]", "flip-2-hor-top-1");
-      reqTile2.classList.remove("bg-[#222]", "border-[1px]");
-      if (reqTile2.classList.contains("bg-green-800") === false)
+      if (reqTile2.classList.contains("bg-green-800") === false) {
+        reqTile2.classList.remove("bg-[#222]", "border-[1px]");
         reqTile2.classList.add("bg-black", "text-[#555]", "flip-2-hor-top-1");
+      }
     }
   }
   for (let i = 0; i < userWord.length; i++) {
@@ -32,13 +33,15 @@ const addTileClasses = async (word, userWord, curWord) => {
     } else if (word[i] !== userWord[i]) {
       reqTile.classList.remove("border-4");
       reqTile.classList.add("bg-[#222]", "flip-2-hor-top-1");
-      reqTile2.classList.remove("bg-[#222]", "border-[1px]");
-      reqTile2.classList.add(
-        "bg-black",
-        "text-[#555]",
-        "hover:border-gray-400",
-        "flip-2-hor-top-1"
-      );
+      if (reqTile2.classList.contains("bg-green-800") === false) {
+        reqTile2.classList.remove("bg-[#222]", "border-[1px]");
+        reqTile2.classList.add(
+          "bg-black",
+          "text-[#555]",
+          "hover:border-gray-400",
+          "flip-2-hor-top-1"
+        );
+      }
     }
   }
 };

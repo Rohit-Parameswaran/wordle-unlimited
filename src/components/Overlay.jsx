@@ -26,18 +26,18 @@ const Overlay = () => {
         <div className="text-xl mt-5 mb-4 text-center">
           Are you sure?
           <div className="text-sm text-[#aaa] mt-2">
-            <p>This will count as a loss in your statistics</p>
+            {gameOverCheck && (<>This will count as a loss in your statistics</>)}
           </div>
         </div>
         <div className="w-full flex justify-center">
           <div
-            className="p-2 w-1/4 bg-green-800 mx-3 text-center rounded-sm cursor-pointer hover:scale-110"
+            className="p-2 w-1/2 md:w-1/4 bg-green-800 mx-3 text-center rounded-sm cursor-pointer hover:scale-110"
             onClick={handleNewGame}
           >
             YES
           </div>
           <div
-            className="p-2 w-1/4 bg-red-700 mx-3 text-center rounded-sm cursor-pointer hover:scale-110"
+            className="p-2 w-1/2 md:w-1/4 bg-red-700 mx-3 text-center rounded-sm cursor-pointer hover:scale-110"
             onClick={() => {
               document.getElementById("overlay").classList.add("hidden");
             }}
@@ -45,7 +45,7 @@ const Overlay = () => {
             NO
           </div>
         </div>
-        <p className="text-sm text-[#aaa] mt-4">(Finish the wordle to view answer)</p>
+        {gameOverCheck && (<p className="text-sm text-[#aaa] mt-4">(Finish the wordle to view answer)</p>)}
       </div>
     </div>
   );
