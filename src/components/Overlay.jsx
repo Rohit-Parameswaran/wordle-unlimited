@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 
 const Overlay = () => {
   const [cookies, setCookie] = useCookies(["total", "gameOver"]);
+  const [newGameRequest, setNewGameRequest] = useState(false);
   const gameOverCheck =
     isNaN(cookies.gameOver) || parseInt(cookies.gameOver) === 0;
   const handleNewGame = () => {
@@ -10,11 +11,12 @@ const Overlay = () => {
       const t = isNaN(cookies.total) ? 0 : parseInt(cookies.total);
       setCookie("total", t + 1, { path: "/" });
     }
-    setCookie("gameOver", 0, { path: "/" });
+    setNewGameRequest(true);
     localStorage.removeItem("grid");
     localStorage.removeItem("curWord");
     localStorage.removeItem("answer");
     window.location.reload();
+    setCookie("gameOver", 0, { path: "/" });
   };
 
   return (
@@ -26,7 +28,7 @@ const Overlay = () => {
         <div className="text-xl mt-5 mb-4 text-center">
           Are you sure?
           <div className="text-sm text-[#aaa] mt-2">
-            {gameOverCheck && (<>This will count as a loss in your statistics</>)}
+            {gameOverCheck && !newGameRequest && <>This will count as a loss in your statistics</>}
           </div>
         </div>
         <div className="w-full flex justify-center">
@@ -45,7 +47,11 @@ const Overlay = () => {
             NO
           </div>
         </div>
-        {gameOverCheck && (<p className="text-sm text-[#aaa] mt-4">(Finish the wordle to view answer)</p>)}
+        {gameOverCheck && !newGameRequest && (
+          <p className="text-sm text-[#aaa] mt-4">
+            (Finish the wordle to view answer)
+          </p>
+        )}
       </div>
     </div>
   );

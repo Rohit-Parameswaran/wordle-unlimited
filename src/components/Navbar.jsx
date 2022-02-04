@@ -11,7 +11,7 @@ const Navbar = () => {
   ).toFixed(1)}`;
   return (
     <div className="flex justify-evenly items-center py-2 wrap border-b-2 border-neutral-800">
-      <div className="hidden sm:block py-1 px-3 rounded-sm bg-green-800 text-center text-xl text-[#ddd] select-none hover:scale-105">
+      <div className="hidden sm:block py-1 px-3 rounded-sm bg-green-800 text-center text-lg text-[#ddd] select-none hover:scale-105">
         WINS{" "}
         <div className="inline w-full border-[1px] border-green-900 mx-2"></div>{" "}
         {isNaN(winPercent) ? "-" : winPercent + "%"}

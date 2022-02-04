@@ -35,26 +35,36 @@ const Game = () => {
     const t = isNaN(cookies.total) ? 0 : parseInt(cookies.total);
     if (winBool) setCookie("wins", w + 1, { path: "/" });
     setCookie("total", t + 1, { path: "/" });
-    if (winBool)
-      toast.success("Amazing!", {
-        theme: "dark",
-        closeButton: false,
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
-    else
+    if (winBool) {
+      const winMessages = [
+        "Amazing!",
+        "Yayy! You got it right",
+        "Phenomenal",
+        `${answer.toUpperCase()} it is! Great job`,
+      ];
+
+      toast.success(
+        winMessages[Math.floor(Math.random() * winMessages.length)],
+        {
+          theme: "dark",
+          closeButton: false,
+          position: "top-center",
+          autoClose: false,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    } else
       toast.error(`Hard Luck. The word was ${answer.toUpperCase()}`, {
         theme: "dark",
         closeButton: false,
         position: "top-center",
-        autoClose: 5000,
+        autoClose: false,
         hideProgressBar: false,
-        closeOnClick: true,
+        closeOnClick: false,
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
@@ -140,14 +150,26 @@ const Game = () => {
     };
   }, []);
 
+  const winPercent = `${(
+    ((isNaN(cookies.wins) ? 0 : cookies.wins) * 100.0) /
+    cookies.total
+  ).toFixed(1)}`;
+
   return (
     <div className="mx-4 flex flex-row flex-wrap justify-center lg:justify-evenly items-center select-none">
       <Grid grid={grid} />
-      <Keyboard
-        handleSubmit={handleSubmit}
-        backspace={backspace}
-        addLetter={addLetter}
-      />
+      <div className="flex flex-col items-center justify-center sm:flex-none">
+        <Keyboard
+          handleSubmit={handleSubmit}
+          backspace={backspace}
+          addLetter={addLetter}
+        />
+        <div className="sm:hidden py-1 px-3 mt-8 rounded-sm bg-green-800 text-center text-sm text-[#ddd] select-none hover:scale-105">
+          WINS{" "}
+          <div className="inline w-full border-[1px] border-green-900 mx-2"></div>{" "}
+          {isNaN(winPercent) ? "-" : winPercent + "%"}
+        </div>
+      </div>
       <ToastContainer
         position="top-center"
         autoClose={1200}
