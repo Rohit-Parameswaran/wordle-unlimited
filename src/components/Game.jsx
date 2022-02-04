@@ -29,12 +29,22 @@ const Game = () => {
   };
 
   const handlePuzzleComplete = (winBool) => {
-    setCookie("gameOver", winBool ? 1 : -1, { path: "/" });
+    setCookie("gameOver", winBool ? 1 : -1, {
+      path: "/",
+      expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+    });
     addTileClasses(answer, grid[curWord], curWord);
     const w = isNaN(cookies.wins) ? 0 : parseInt(cookies.wins);
     const t = isNaN(cookies.total) ? 0 : parseInt(cookies.total);
-    if (winBool) setCookie("wins", w + 1, { path: "/" });
-    setCookie("total", t + 1, { path: "/" });
+    if (winBool)
+      setCookie("wins", w + 1, {
+        path: "/",
+        expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+      });
+    setCookie("total", t + 1, {
+      path: "/",
+      expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+    });
     if (winBool) {
       const winMessages = [
         "Amazing!",

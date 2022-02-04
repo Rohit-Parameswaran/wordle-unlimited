@@ -9,14 +9,20 @@ const Overlay = () => {
   const handleNewGame = () => {
     if (gameOverCheck) {
       const t = isNaN(cookies.total) ? 0 : parseInt(cookies.total);
-      setCookie("total", t + 1, { path: "/" });
+      setCookie("total", t + 1, {
+        path: "/",
+        expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+      });
     }
     setNewGameRequest(true);
     localStorage.removeItem("grid");
     localStorage.removeItem("curWord");
     localStorage.removeItem("answer");
     window.location.reload();
-    setCookie("gameOver", 0, { path: "/" });
+    setCookie("gameOver", 0, {
+      path: "/",
+      expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+    });
   };
 
   return (
@@ -28,7 +34,9 @@ const Overlay = () => {
         <div className="text-xl mt-5 mb-4 text-center">
           Are you sure?
           <div className="text-sm text-[#aaa] mt-2">
-            {gameOverCheck && !newGameRequest && <>This will count as a loss in your statistics</>}
+            {gameOverCheck && !newGameRequest && (
+              <>This will count as a loss in your statistics</>
+            )}
           </div>
         </div>
         <div className="w-full flex justify-center">
